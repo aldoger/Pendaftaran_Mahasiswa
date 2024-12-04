@@ -69,7 +69,7 @@ if( mysqli_num_rows($query) < 1 ){
             <h3>Formulir Edit Siswa</h3>
         </header>
 
-        <form action="proses-edit.php" method="POST" class="mx-auto w-75">
+        <form action="proses-edit.php" method="POST" enctype="multipart/form-data" class="mx-auto w-75">
             <fieldset>
                 <input type="hidden" name="id" value="<?php echo $siswa['id'] ?>" />
 
@@ -112,6 +112,18 @@ if( mysqli_num_rows($query) < 1 ){
                     <label for="sekolah_asal" class="form-label">Sekolah Asal:</label>
                     <input type="text" name="sekolah_asal" class="form-control" placeholder="Nama sekolah" value="<?php echo $siswa['sekolah_asal'] ?>" required>
                 </div>
+
+                <div class="mb-3">
+                    <label for="foto" class="form-label">Foto:</label>
+                    <input type="file" name="foto" class="form-control">
+                    <!-- Input tersembunyi untuk menyimpan nama foto lama -->
+                    <input type="hidden" name="foto_lama" value="<?php echo $siswa['foto']; ?>">
+                    <!-- Menampilkan gambar lama -->
+                    <?php if (!empty($siswa['foto'])): ?>
+                        <img src="images/<?php echo $siswa['foto']; ?>" alt="Foto Siswa" style="width: 150px; height: auto; margin-top: 10px;">
+                    <?php endif; ?>
+                </div>
+
 
                 <div class="text-center">
                     <button type="submit" name="simpan" class="btn btn-primary">Simpan</button>

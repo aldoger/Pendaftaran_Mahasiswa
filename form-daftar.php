@@ -42,7 +42,7 @@
             <h3>Formulir Pendaftaran Siswa Baru</h3>
         </header>
 
-        <form action="proses-pendaftaran.php" method="POST" class="mx-auto w-75">
+        <form action="proses-pendaftaran.php" method="POST" enctype="multipart/form-data" class="mx-auto w-75">
             <fieldset>
                 <div class="mb-3">
                     <label for="nama" class="form-label">Nama:</label>
@@ -81,6 +81,11 @@
                 <div class="mb-3">
                     <label for="sekolah_asal" class="form-label">Sekolah Asal:</label>
                     <input type="text" name="sekolah_asal" class="form-control" placeholder="Nama sekolah" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="foto" class="form-label">foto</label>
+                    <input type="file" name="foto" class="form-control" >
                 </div>
 
                 <div class="text-center">

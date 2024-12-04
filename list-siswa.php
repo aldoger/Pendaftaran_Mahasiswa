@@ -66,6 +66,7 @@
                 <tr>
                     <th>No</th>
                     <th>Nama</th>
+                    <th>Foto</th>
                     <th>Alamat</th>
                     <th>Jenis Kelamin</th>
                     <th>Agama</th>
@@ -78,18 +79,35 @@
                 $sql = "SELECT * FROM calon_siswa";
                 $query = mysqli_query($db, $sql);
 
-                while($siswa = mysqli_fetch_array($query)){
+                // Periksa apakah ada data
+                if (mysqli_num_rows($query) > 0) {
+                    $no = 1; // Nomor urut
+                    while ($siswa = mysqli_fetch_array($query)) {
+                        echo "<tr>";
+                        echo "<td>" . $no++ . "</td>";
+                        echo "<td>" . $siswa['nama'] . "</td>";
+                        if (empty($siswa['foto'])) {
+                            echo "<td><span class='text-muted'>Tidak Ada Foto</span></td>";
+                        } else {
+                            echo "<td><img src='images/" . $siswa['foto'] . "' width='100' height='100' alt='Foto Siswa'></td>";
+                        }
+                        echo "<td>" . $siswa['alamat'] . "</td>";
+                        echo "<td>" . $siswa['jenis_kelamin'] . "</td>";
+                        echo "<td>" . $siswa['agama'] . "</td>";
+                        echo "<td>" . $siswa['sekolah_asal'] . "</td>";
+
+                        // Tindakan
+                        echo "<td>";
+                        echo "<a class='btn btn-warning btn-sm' href='form-edit.php?id=" . $siswa['id'] . "'>Edit</a> ";
+                        echo "<a class='btn btn-danger btn-sm' href='hapus.php?id=" . $siswa['id'] . "'>Hapus</a>";
+                        echo "</td>";
+
+                        echo "</tr>";
+                    }
+                } else {
+                    // Jika tidak ada data siswa
                     echo "<tr>";
-                    echo "<td>".$siswa['id']."</td>";
-                    echo "<td>".$siswa['nama']."</td>";
-                    echo "<td>".$siswa['alamat']."</td>";
-                    echo "<td>".$siswa['jenis_kelamin']."</td>";
-                    echo "<td>".$siswa['agama']."</td>";
-                    echo "<td>".$siswa['sekolah_asal']."</td>";
-                    echo "<td>";
-                    echo "<a class='btn btn-warning btn-sm' href='form-edit.php?id=".$siswa['id']."'>Edit</a> ";
-                    echo "<a class='btn btn-danger btn-sm' href='hapus.php?id=".$siswa['id']."'>Hapus</a>";
-                    echo "</td>";
+                    echo "<td colspan='8' class='text-center'>Tidak ada data siswa.</td>";
                     echo "</tr>";
                 }
                 ?>
