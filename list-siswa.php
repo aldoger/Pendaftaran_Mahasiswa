@@ -59,6 +59,7 @@
 
         <nav class="mb-3">
             <a href="form-daftar.php">[+] Tambah Baru</a>
+            <a href="makePDF.php" class="btn btn-primary">Generate PDF</a>
         </nav>
 
         <table class="table table-bordered table-striped text-center">
